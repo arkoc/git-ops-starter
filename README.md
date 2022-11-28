@@ -15,8 +15,8 @@ Bob, co-founder and a guy who had experience with Azure, was handling all of the
 - Should have sperate dev/prod environment and ability to have more enviroments like qa/staging relativly easier
 - Adding new AppServices/AzureFunctions and k8s deployments should require minimal steps from developer
 - Prod environment should be fully in v-net and authorized developers should have vpn acess to it
-- All the configurations, connections strings for all deployments should be configured automatically\
-- All infrastructure deployments should be defined as a code, so it makes any change fast/easy and trackable
+- Configurations, connections strings for all deployments should be configured automatically\
+- Infrastructure deployments should be defined as a code, so it makes any change fast/easy and trackable
 
 Out of these requirements Bob decided to use Terraform for managing Azure infrastructure and Fluxcd for managing AKS (k8s).
 
