@@ -1,3 +1,7 @@
+## Git Ops Starter
+
+Git ops starter is repository addressing ABC, Inc. company's all infrastructure needs. Before diving in read the story how this repository was born.
+
 ## ABC, Inc.
 
 ABC, Inc. is a regular or spectacular SaaS startup. They are developing their platform mainly utilizing Microsoft technologies, including C#, .Net deployed in Azure App Services and Azure Functions. For some of external services like Superblocks as well as some internal long running jobs they utilize AKS (k8s). Data is mostly stored in a PostgresSQL database (flexiable servers managed by Azure), they cache in Redis (managed service by Azure) and send cross-components messages in Azure Service Bus. Ah and also for one of their data-sensitive components they use MongoDB Atlas. Front-end is written in Typescript and they use Next.js deployed to Vercel. For DNS management they use Cloudflare, for SSL certificates they use lets-encrypt and for logging/monitoring they use DataDog. And for some wired reason they use Azure Devops pipelines instead of GitHub Actions.
@@ -24,14 +28,15 @@ Information about overall architechture desing, separate workspaces for k8s, dev
 
 Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
 
-# Git Ops Starter
+## Repository structure
 
-Git ops starter is repository addressing ABC, Inc. company's all infrastructure needs.
+Information on how the repository is structured
 
 ## Call outs
 
 Include links to specific implementations, like vpn gateway, mongodb atlas private link and more
 
 ## What's next
+
 - We are more than happy to have a debate on Bob's decisions
 - ABC Inc, is planning to duplciate their infrastructure in AWS and Google Cloud
