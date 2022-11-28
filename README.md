@@ -39,4 +39,4 @@ Include links to specific implementations, like vpn gateway, mongodb atlas priva
 ## What's next
 
 - We are more than happy to have a debate on Bob's decisions
-- ABC Inc, is planning to duplciate their infrastructure in AWS and Google Cloud
+- ABC, Inc. is planning to duplciate their infrastructure in AWS and Google Cloud
