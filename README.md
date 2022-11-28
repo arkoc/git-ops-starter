@@ -1,6 +1,6 @@
 ## Git Ops Starter
 
-Git ops starter is repository addressing ABC, Inc. company's all infrastructure needs. Before diving in read the story how this repository was born.
+Git ops starter is addressing ABC, Inc. company's all infrastructure needs. Before diving in read the story how this repository was born.
 
 ## ABC, Inc.
 
