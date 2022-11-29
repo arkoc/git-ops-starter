@@ -88,3 +88,4 @@ Include links to specific implementations, like VPN gateway, MongoDB atlas priva
 ## What's next?
 - Discuss and improve Bob's decisions with the help of the community
 - ABC, Inc. is planning to duplicate its infrastructure in AWS and Google Cloud
+- Implement near-0 time release management
