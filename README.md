@@ -12,17 +12,40 @@ Bob, co-founder and a guy who had experience with Azure, was handling all of the
 
 ## Requirements
 
-- Should have sperate dev/prod environment and ability to have more enviroments like qa/staging relativly easier
+- Should have separate dev/prod environment and ability to have more enviroments like qa/staging relativly easier
 - Adding new AppServices/AzureFunctions and k8s deployments should require minimal steps from developer
 - Prod environment should be fully in v-net and authorized developers should have vpn acess to it
-- Configurations, connections strings for all deployments should be configured automatically\
-- Infrastructure deployments should be defined as a code, so it makes any change fast/easy and trackable
+- Configurations, connections strings for all deployments should be configured automatically
+- Infrastructure deployments should be defined as a code, so it makes any change fast, easy and trackable
 
 Out of these requirements Bob decided to use Terraform for managing Azure infrastructure and Fluxcd for managing AKS (k8s).
 
 ## Architecture
 
-Information about overall architechture desing, separate workspaces for k8s, devops, dev and prod environment
+Let's define the proces how ones code is released in production.
+1. Code is commited/merged in dev branch.
+2. Azure DevOps pipelines is triggered, which builds the code, runs unit tests and deploys to dev environment.
+3. After testing and release decision, dev branch is merged to main which triggers Azure Devops pipeleins once more, which deploys code to production.
+
+Not the best release management, but its get job done, with just few minutes of downtime. Later one Bob is planning on improving this as well. 
+We can clearly see from this process that we need:
+
+- Dev environment
+- Prod environment
+- Build pipelines for each component
+- k8s manifest apply for not azure managed services
+
+Let's go one by one. 
+Its prettystraight forward that we can have terraform repo with all necassary azure services in dev enviroment. Then we can have branch called dev for dev and main branch for production.
+
+### A separate k8s cluster for each environment?
+prons and cons
+Bob decided to have on cluster and different node-pools for ench environment
+
+### Automated deployment of Build Pipelines?
+prons and cons
+
+Bob decided to have a separate terraform repo for deploying build pipelines
 
 ## Underwater stones
 
@@ -32,11 +55,14 @@ Information about Terraform cloud agents, azure build agents, link to doc how to
 
 Information on how the repository is structured
 
+## Terraform Environment Variables
+
+
 ## Call outs
 
 Include links to specific implementations, like vpn gateway, mongodb atlas private link and more
 
 ## What's next
 
-- We are more than happy to have a debate on Bob's decisions
+- Discuss and improve Bob's decisions with help of community
 - ABC, Inc. is planning to duplciate their infrastructure in AWS and Google Cloud
