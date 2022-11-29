@@ -59,6 +59,26 @@ Information on how the repository is structured
 
 ## Terraform Environment Variables
 
+### TF Cloud Variable Set : Global Secrets
+
+| Key  | Sensitive | Category | Description
+| ----------------------------------- | ----- | ------- | ----------------------------- |
+|zARM_CLIENT_ID | X | env | key description |
+| ARM_CLIENT_SECRET | X | env | key description |
+| ARM_SUBSCRIPTION_ID | X | env | key description |
+| ARM_TENANT_ID | X | env | key description |
+| ARM_TENANT_ID | X | env | key description |
+| AZDO_GITHUB_SERVICE_CONNECTION_PAT | X | env | key description |
+| AZDO_ORG_SERVICE_URL | X | env | key description |
+| AZDO_PERSONAL_ACCESS_TOKEN | X | env | key description |
+| CLOUDFLARE_API_KEY | X | env | key description |
+| CLOUDFLARE_EMAIL | X | env | key description |
+| DD_API_KEY | X | env | key description |
+| DD_APP_KEY | X | env | key description |
+| GITHUB_TOKEN | X | env | key description |
+| MONGODB_ATLAS_PRIVATE_KEY | X | env | key description |
+| MONGODB_ATLAS_PUBLIC_KEY | X | env | key description |
+| VERCEL_API_TOKEN | X | env | key description |
 
 ## Call outs
 
