@@ -74,13 +74,24 @@ Bob decided to have a separate terraform repo for deploying build pipelines.
 
 To sum it up. We will have 4 loosly coupled workspaces. dev, prod, k8s for deploying AKS, devops for creating build pipelines. On top of that we will have separate repo - flux for managing k8s deployments.
 
+Diagram
+
+Some more in depsh explanation of diagram and the state dependecies.
+
+Showcase how the new appservice and k8s deployment are added. The final result.
+
 ## Repository structure
 
-Information on how the repository is structured
+The repository is organized by cloud provider. Right now ABC, Inc. is only running on Azure, but they have some plans on duplicating infra in AWS, Google Cloud or IBM Cloud (Is there a such a thing?)
+
+- /azure/infra
+- /azure/k8s
+- /azure/devops
+- /azure/fluxcd
 
 ## Terraform Environment Variables
 
-### TF Cloud Variable Set : Global Secrets
+Following are global secrets neccessary for configuring terraform connections to providers.
 
 | Key  | Sensitive | Category | Description
 | ----------------------------------- | ----- | ------- | ----------------------------------- |
@@ -100,6 +111,11 @@ Information on how the repository is structured
 | MONGODB_ATLAS_PUBLIC_KEY | X | env | key description |
 | VERCEL_API_TOKEN | X | env | key description |
 
+For each specific terraform workspace there are separate variable files as well:
+- /azure/infra/variables.tf
+- /azure/infra/variables.tf
+- /azure/devops/variabales.tf
+
 ## Call outs
 
 Include links to specific implementations, like VPN gateway, MongoDB atlas private link, and more
@@ -111,4 +127,4 @@ Information about Terraform cloud agents, azure build agents, link to doc how to
 ## What's next?
 - Discuss and improve Bob's decisions with the help of the community
 - ABC, Inc. is planning to duplicate its infrastructure in AWS and Google Cloud
-- Implement near-0 time release management
+- Implement near 0 downtime release management
