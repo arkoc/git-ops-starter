@@ -8,11 +8,27 @@ We have a mission of creating the most comprehensive git ops starter project to 
 
 ## :office: ABC, Inc.
 
-ABC, Inc. is a regular or spectacular SaaS startup. They are developing their platform mainly utilizing Microsoft technologies, including C#, .Net deployed in Azure App Services, and Azure Functions. For some of the external services like Superblocks, as well as some long-running internal jobs, they utilize AKS (k8s). Data is mostly stored in a PostgresSQL database (flexible servers managed by Azure); they cache in Redis (managed service by Azure) and send cross-components messages in Azure Service Bus. Ah, and also, for one of their data-sensitive components, they use MongoDB Atlas. Front-end is written in Typescript, and they use Next.js deployed to Vercel. For DNS management, they use Cloudflare; for SSL certificates, they use lets-encrypt; and for logging/monitoring, they use DataDog. And for some wired reason, they use Azure DevOps pipelines instead of GitHub Actions.
+ABC, Inc. is a regular or spectacular SaaS startup. They are developing their platform by utilizing following technologies:
+- C#
+- .Net Core (deployed in Azure App Services and Azure Functions)
+- AKS (external services like Superblocks and some long-running internal jobs
+- PostgresSQL database (flexible servers managed by Azure) 
+- MongoDB database (managed by Atlas and deployed in Azure)
+- Redis (managed service by Azure)
+- Azure Service Bus
+- Typescript with Next.js and deployed in Vercel
+- Cloudflare
+- Lets-Encrypt
+- Azure DevOps Pipelines
+- Datadog
 
 ## Story
 
-Bob, co-founder and a guy with experience with Azure, was handling all these—creating AppServices, configuring App_Settings, Connection_Strings, and DNS verification records. All by bare hands. It was fun at first. But then, as any startup, ABC, Inc. also went through major 2-3 pivots until we started feeling the 'zen' of any startup - "product-market-fit." In a startup world, pivot means you had an A idea; now, it's a B. But what does it mean for technical savages like Bob? You had the A1 service, referencing the A2 service with A3 Database. You had entity names suited and designed for A; the dependencies like A1 -> A2 made sense for A. Now you have to change everything from A to B. You only have time to rewrite/recreate everything. You already have some components that don't need to be changed - at least logically, so you end up applying changes only in "UI" and make everything somehow work. After a few pivots, you have a lovely "C Idea" UI and "A, B, C, D, E" backend and "A0, A1, B1, b999, 7E, DDD" infrastructure. With each day passing, Bob felt more pressure; he slowly released that everything would explode if he didn't do something with this now. The next day, after having a horrible night - Bob took a paper - just an MD file and wrote down all requirements for having a better infra world.
+Bob, co-founder and a guy with experience with Azure, was handling all these—creating AppServices, configuring App_Settings, Connection_Strings, and DNS verification records. All by bare hands. It was fun at first. 
+
+But then, as any startup, ABC, Inc. also went through major 2-3 pivots until we started feeling the 'zen' of any startup - "product-market-fit." In a startup world, pivot means you had an A idea; now, it's a B. But what does it mean for technical savages like Bob? You had the A1 service, referencing the A2 service with A3 Database. You had entity names suited and designed for A; the dependencies like A1 -> A2 made sense for A. Now you have to change everything from A to B. You only have time to rewrite/recreate everything. You already have some components that don't need to be changed - at least logically, so you end up applying changes only in "UI" and make everything somehow work. After a few pivots, you have a lovely "C Idea" UI and "A, B, C, D, E" backend and "A0, A1, B1, b999, 7E, DDD" infrastructure. 
+
+With each day passing, Bob felt more pressure; he slowly released that everything would explode if he didn't do something with this now. The next day, after having a horrible night - Bob took a paper - just an MD file and wrote down all requirements for having a better infra world.
 
 ## Requirements
 
@@ -39,20 +55,24 @@ We can see from this process that we need the following:
 - Build pipelines for each component
 - k8s manifest applies for not azure managed services
 
-### :question: Separate workspace/branch for each environment?
+### :interrobang: Separate workspace/branch for each environment?
 Prons and conds
 
-### :question: A separate k8s cluster for each environment?
+Bob decided to have branch for each environment and separate workspace associated with it.
+
+### :interrobang: A separate k8s cluster for each environment?
 Pros and cons
+
 Bob decided to have one k8s cluster and different node pools for each environment.
 
-### :question: Automated deployment of Build Pipelines?
+### :interrobang: Automated deployment of Build Pipelines?
 Pros and cons
+
 Bob decided to have a separate terraform repo for deploying build pipelines.
 
-## Underwater stones
+***
 
-Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
+To sum it up. We will have 4 loosly coupled workspaces. dev, prod, k8s for deploying AKS, devops for creating build pipelines. On top of that we will have separate repo - flux for managing k8s deployments.
 
 ## Repository structure
 
@@ -84,6 +104,9 @@ Information on how the repository is structured
 
 Include links to specific implementations, like VPN gateway, MongoDB atlas private link, and more
 
+## Underwater stones
+
+Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
 
 ## What's next?
 - Discuss and improve Bob's decisions with the help of the community
