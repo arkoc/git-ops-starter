@@ -1,12 +1,12 @@
-# Git Ops Starter
+# :wrench: Git Ops Starter
 
 Git ops starter is addressing ABC, Inc. company's all infrastructure needs. Before diving in, read the story of how this repository was born.
 
-## Why?
+## :v: Why?
 
 We have a mission of creating the most comprehensive git ops starter project to help our fellow DevOps save 1000s hours renaming, figuring out non-obvious docs, and trying to address any company's basic to advanced needs. We believe that with the help of the community, we can extract best practices, test them, and document them for a new git ops paradigm.
 
-## ABC, Inc.
+## :office: ABC, Inc.
 
 ABC, Inc. is a regular or spectacular SaaS startup. They are developing their platform mainly utilizing Microsoft technologies, including C#, .Net deployed in Azure App Services, and Azure Functions. For some of the external services like Superblocks, as well as some long-running internal jobs, they utilize AKS (k8s). Data is mostly stored in a PostgresSQL database (flexible servers managed by Azure); they cache in Redis (managed service by Azure) and send cross-components messages in Azure Service Bus. Ah, and also, for one of their data-sensitive components, they use MongoDB Atlas. Front-end is written in Typescript, and they use Next.js deployed to Vercel. For DNS management, they use Cloudflare; for SSL certificates, they use lets-encrypt; and for logging/monitoring, they use DataDog. And for some wired reason, they use Azure DevOps pipelines instead of GitHub Actions.
 
@@ -39,13 +39,14 @@ We can see from this process that we need the following:
 - Build pipelines for each component
 - k8s manifest applies for not azure managed services
 
-It's pretty straight forward that we can have terraforme repo with all necessary azure services for the dev environment. Then we can have a branch called dev for dev and a main (not master, we are not racists here) for production.
+### :question: Separate workspace/branch for each environment?
+Prons and conds
 
-### A separate k8s cluster for each environment?
+### :question: A separate k8s cluster for each environment?
 Pros and cons
 Bob decided to have one k8s cluster and different node pools for each environment.
 
-### Automated deployment of Build Pipelines?
+### :question: Automated deployment of Build Pipelines?
 Pros and cons
 Bob decided to have a separate terraform repo for deploying build pipelines.
 
