@@ -4,7 +4,7 @@ Git ops starter is addressing ABC, Inc. company's all infrastructure needs. Befo
 
 ## :v: Why?
 
-We have a mission of creating the most comprehensive git ops starter project to help our fellow DevOps save 1000s hours renaming, figuring out non-obvious docs, and trying to address any company's basic to advanced needs. We believe that with the help of the community, we can extract best practices, test them, and document them for a new git ops paradigm.
+This is an inniciative of creating the most comprehensive git ops starter project. We believe that with the help of the community, we can extract best practices, test them and document them for a new git ops paradigm.
 
 ## :office: ABC, Inc.
 
@@ -22,7 +22,7 @@ ABC, Inc. is a regular or spectacular SaaS startup. They are developing their pl
 - Azure DevOps Pipelines
 - Datadog
 
-## Story
+## :newspaper: Story
 
 Bob, co-founder and a guy with experience with Azure, was handling all these—creating AppServices, configuring App_Settings, Connection_Strings, and DNS verification records. All by bare hands. It was fun at first. 
 
@@ -30,7 +30,7 @@ But then, as any startup, ABC, Inc. also went through major 2-3 pivots until we 
 
 With each day passing, Bob felt more pressure; he slowly released that everything would explode if he didn't do something with this now. The next day, after having a horrible night - Bob took a paper - just an MD file and wrote down all requirements for having a better infra world.
 
-## Requirements
+## :gun: Requirements
 
 - Should have separate Dev/Prod environment and ability to have more environments like QA/Staging relatively easier
 - Adding new AppServices/AzureFunctions and k8s deployments should require minimal steps from the developer
@@ -40,7 +40,7 @@ With each day passing, Bob felt more pressure; he slowly released that everythin
 
 Out of these requirements, Bob decided to use Terraform for managing Azure infrastructure and Fluxcd for managing AKS (k8s).
 
-## Architecture
+## :triangular_ruler: Architecture
 
 Let's define the process of how one's code is released in production.
 1. Code is committed/merged in the dev branch.
@@ -80,7 +80,7 @@ Some more in depsh explanation of diagram and the state dependecies.
 
 Showcase how the new appservice and k8s deployment are added. The final result.
 
-## Repository structure
+## :blue_book: Repository structure
 
 The repository is organized by cloud provider. Right now ABC, Inc. is only running on Azure, but they have some plans on duplicating infra in AWS, Google Cloud or IBM Cloud (Is there a such a thing?)
 
@@ -89,7 +89,7 @@ The repository is organized by cloud provider. Right now ABC, Inc. is only runni
 - /azure/devops
 - /azure/fluxcd
 
-## Terraform Environment Variables
+## :file_folder: Terraform Environment Variables
 
 Following are global secrets neccessary for configuring terraform connections to providers.
 
@@ -116,15 +116,18 @@ For each specific terraform workspace there are separate variable files as well:
 - /azure/infra/variables.tf
 - /azure/devops/variabales.tf
 
-## Call outs
+## :pushpin:Call outs
 
 Include links to specific implementations, like VPN gateway, MongoDB atlas private link, and more
 
-## Underwater stones
+## :skull: Underwater stones
 
 Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
 
-## What's next?
+## :rocket: What's next?
 - Discuss and improve Bob's decisions with the help of the community
 - ABC, Inc. is planning to duplicate its infrastructure in AWS and Google Cloud
 - Implement near 0 downtime release management
+
+
+## :hearts: Aknowledgments
