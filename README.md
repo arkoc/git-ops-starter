@@ -62,7 +62,7 @@ Information on how the repository is structured
 ### TF Cloud Variable Set : Global Secrets
 
 | Key  | Sensitive | Category | Description
-| ----------------------------------- | ----- | ------- | ----------------------------- |
+| ----------------------------------- | ----- | ------- | ----------------------------------- |
 | ARM_CLIENT_ID | X | env | key description |
 | ARM_CLIENT_SECRET | X | env | key description |
 | ARM_SUBSCRIPTION_ID | X | env | key description |
