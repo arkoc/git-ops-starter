@@ -63,10 +63,9 @@ Information on how the repository is structured
 
 | Key  | Sensitive | Category | Description
 | ----------------------------------- | ----- | ------- | ----------------------------- |
-|zARM_CLIENT_ID | X | env | key description |
+| ARM_CLIENT_ID | X | env | key description |
 | ARM_CLIENT_SECRET | X | env | key description |
 | ARM_SUBSCRIPTION_ID | X | env | key description |
-| ARM_TENANT_ID | X | env | key description |
 | ARM_TENANT_ID | X | env | key description |
 | AZDO_GITHUB_SERVICE_CONNECTION_PAT | X | env | key description |
 | AZDO_ORG_SERVICE_URL | X | env | key description |
