@@ -1,0 +1,47 @@
+{{- if .Values.ingress.enabled }}
+{{- $fullName := include "abc.fullname" . }}
+{{- $svcPort := .Values.service.port }}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion }}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion }}
+apiVersion: networking.k8s.io/v1beta1
+{{- else }}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "abc.labels" . | nindent 4 }}
+  annotations:
+  {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+    {{- if .Values.ingress.isPrivate }}
+    appgw.ingress.kubernetes.io/use-private-ip: "true"
+    {{- end }}
+    appgw.ingress.kubernetes.io/override-frontend-port: "{{ .Values.ingress.port }}"
+    kubernetes.io/ingress.class: azure/application-gateway
+    cert-manager.io/cluster-issuer: cert-manager
+spec:
+  tls:
+    - hosts:
+        - {{ required "host is required. Example: api.dev.k8s.abc.cloud." .Values.ingress.host }}
+      secretName: "{{ $fullName }}-tls"
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+              {{- else }}
+              serviceName: {{ $fullName }}
+              servicePort: {{ $svcPort }}
+              {{- end }}
+{{- end }}

@@ -41,23 +41,23 @@ resource "azurerm_application_gateway" "k8s" {
 
   # => This is automatically removed by Kubernetes, because in fact applicaiton gateway is managed by it
   frontend_port {
-    name = "ls-default-port"
+    name = "default-port"
     port = 63333
   }
 
   backend_address_pool {
-    name = "ls-default-backend-address-pool"
+    name = "default-backend-address-pool"
   }
 
   http_listener {
-    name                           = "ls-default-listener"
+    name                           = "default-listener"
     frontend_ip_configuration_name = "${local.frontend_ip_configuration_name}-public"
-    frontend_port_name             = "ls-default-port"
+    frontend_port_name             = "default-port"
     protocol                       = "Http"
   }
 
   backend_http_settings {
-    name                  = "ls-default-backend-http-settings"
+    name                  = "default-backend-http-settings"
     cookie_based_affinity = "Disabled"
     path                  = "/path1/"
     port                  = 80
@@ -66,11 +66,11 @@ resource "azurerm_application_gateway" "k8s" {
   }
 
   request_routing_rule {
-    name                       = "ls-default-routing-rule"
+    name                       = "default-routing-rule"
     rule_type                  = "Basic"
-    http_listener_name         = "ls-default-listener"
-    backend_address_pool_name  = "ls-default-backend-address-pool"
-    backend_http_settings_name = "ls-default-backend-http-settings"
+    http_listener_name         = "default-listener"
+    backend_address_pool_name  = "default-backend-address-pool"
+    backend_http_settings_name = "default-backend-http-settings"
     priority                   = 1
   }
 

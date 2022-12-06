@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: datadog-agent
+  namespace: external
+spec:
+  releaseName: datadog-agent
+  chart:
+    spec:
+      chart: datadog 
+      version: ">=3.3.3"
+      sourceRef:
+        kind: HelmRepository
+        name: datadog 
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    datadog:
+      site: "datadoghq.com"
+      apiKey: "api-key"
+      processAgent:
+        enabled: true
+      kubelet:
+        host:
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
+        tlsVerify: false # Required as of Agent 7.35. See Notes.
+        

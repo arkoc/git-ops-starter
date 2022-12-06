@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: superblocks-agent
+  namespace: external
+spec:
+  releaseName: superblocks-agent
+  chart:
+    spec:
+      chart: superblocks-agent
+      version: ">=0.68.0"
+      sourceRef:
+        kind: HelmRepository
+        name: superblocks
+        namespace: flux-system
+  interval: 5m
+  install:
+    remediation:
+      retries: 3
+  values:
+    superblocks: 
+      agentKey: "API-KEY"
+      agentHostUrl: "https://superblocks.k8s.abc.cloud:8020/agent"
+      agentEnvironment: "*"
+
+    controller:
+      ingress:
+        enabled: true
+        annotations:
+          appgw.ingress.kubernetes.io/override-frontend-port: '8020'
+          kubernetes.io/ingress.class: azure/application-gateway
+          cert-manager.io/cluster-issuer: cert-manager
+        hosts:
+        - host: superblocks.k8s.abc.cloud
+          paths:
+          - /
+          - path: /agent
+            pathType: Prefix
+          - path: /health
+        tls:
+        - secretName: superblocks-tls
+          hosts:
+            - superblocks.k8s.abc.cloud
+
+      nodeSelector:
+        agentpool : prod
+
+    worker:
+      nodeSelector:
+        agentpool: prod
