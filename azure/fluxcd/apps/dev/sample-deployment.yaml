@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: sample-deployment
+  namespace: dev
+spec:
+  releaseName: sample-deployment
+  chart:
+    spec:
+      chart: ./charts/abc
+      version: ">=0.4.0"
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+  interval: 1m
+  install:
+    remediation:
+      retries: 4
+  values:
+    replicaCount: 1
+    env: "dev"
+    image:
+      repository: abccontainerhub.azurecr.io/sample
+      pullPolicy: IfNotPresent
+      tag: "dev-9cecdac-1670243683" # {"$imagepolicy": "flux-system:sample-dev:tag"}
+    container:
+      type: "worker"
