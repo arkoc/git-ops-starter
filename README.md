@@ -53,7 +53,7 @@ Based on this process, we need the following:
 - A development environment
 - A production environment
 - Build pipelines for each component
--Kubernetes manifest apply for non-Azure managed services.
+- Kubernetes manifest apply for non-Azure managed services.
 
 ### :interrobang: Separate workspace/branch for each environment?
 Prons and conds
