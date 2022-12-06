@@ -118,16 +118,21 @@ For each specific terraform workspace there are separate variable files as well:
 
 ## :pushpin:Call outs
 
-Include links to specific implementations, like VPN gateway, MongoDB atlas private link, and more
+- VPN Gateway Setup
+- Azure AppServices/AzureFunctions Private Link setup
+- Postgres/Redis Private Link Setup
+- Private DNS Forwarder setup
+- DataDog AppServices Extensions Setup
+- Dashboard of components links generation
 
 ## :skull: Underwater stones
 
 Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
 
-## :rocket: What's next?
-- Discuss and improve Bob's decisions with the help of the community
-- ABC, Inc. is planning to duplicate its infrastructure in AWS and Google Cloud
-- Implement near 0 downtime release management
+## :space_invader: What's next?
 
+- Engage with the community to discuss and improve upon Bob's decisions.
+- ABC, Inc. plans to replicate their infrastructure in AWS and Google Cloud.
+- Implement a release management process with near 0 downtime.
 
 ## :hearts: Aknowledgments
