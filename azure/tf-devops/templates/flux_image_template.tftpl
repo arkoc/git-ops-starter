@@ -1,0 +1,55 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: ${image_name}
+  namespace: flux-system
+spec:
+  image: ${image_fullName}
+  interval: 3m0s
+  secretRef:
+    name: regcred
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: ${image_name}-dev
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: ${image_name}
+  filterTags:
+    pattern: '^dev-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: ${image_name}-stage
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: ${image_name}
+  filterTags:
+    pattern: '^stage-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: ${image_name}-prod
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: ${image_name}
+  filterTags:
+    pattern: '^prod-[a-fA-F0-9]+-(?P<ts>[1-9][0-9]*)'
+    extract: '$ts'
+  policy:
+    numerical:
+      order: asc

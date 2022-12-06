@@ -1,0 +1,59 @@
+parameters:
+- name: workingDirectory
+  type: string
+  default: ''
+- name: nodeVersion
+  type: string
+  default: '16.x' 
+
+variables:
+  - template: base/variables.yml
+
+stages:
+- stage: Main
+  displayName: Build and publish
+
+  jobs:
+  - job: Main
+    displayName: Build and publish
+
+    steps:
+    - template: base/variables-setup.yml
+
+    - task: NodeTool@0
+      inputs:
+        versionSpec: ${{parameters.nodeVersion}}
+      displayName: 'Install Node.js ${{parameters.nodeVersion}}'
+
+    - script: |
+        cd ${{parameters.workingDirectory}}
+      displayName: 'Set working directory'
+
+    - task: Npm@1
+      displayName: Install the dependencies
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: ci
+
+    - task: Npm@1
+      displayName: 'Build'
+      inputs:
+        command: custom
+        verbose: false
+        customCommand: run build
+
+    - task: FuncToolsInstaller@0
+      displayName: 'Install Azure func tools'
+
+    - script: |
+        func pack --javascript
+      displayName: func pack
+ 
+    - task: AzureFunctionApp@1
+      displayName: Azure functions deploy
+      inputs:
+        azureSubscription: $(ARMServiceEndpoint)
+        appType: functionApp
+        appName: $(WebAppName)
+        package: $(Build.Repository.LocalPath)/${{parameters.workingDirectory}}/*.zip

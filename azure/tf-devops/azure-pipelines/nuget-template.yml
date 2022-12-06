@@ -1,0 +1,43 @@
+parameters:
+- name: majorVersion
+  type: string
+  default: '1'
+- name: minorVersion
+  type: string
+  default: '0' 
+- name: workingDirectory
+  type: string 
+  
+variables:
+  - template: base/variables.yml
+  - name: NUGET_PACKAGE_VERSION
+    value: ${{parameters.majorVersion}}.${{parameters.minorVersion}}.$(Build.BuildID)
+  
+stages:
+- stage: Build
+  displayName: Build and publish to Artifacts
+
+  jobs:
+  - job: Build
+    displayName: Build and publish to Artifacts
+
+    steps:
+    - task: UseDotNet@2
+      displayName: Set .NET to $(Dotnet_Version)
+      inputs:
+        version: $(Dotnet_Version).x
+
+    - template: base/dotnet-main.yml    
+     
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: pack
+        versioningScheme: byEnvVar
+        versionEnvVar: NUGET_PACKAGE_VERSION
+        packagesToPack:  ${{parameters.workingDirectory}}/*.csproj   
+
+    - task: DotNetCoreCLI@2
+      displayName: 'NuGet push'
+      inputs:
+        command: push
+        feedPublish: 'ABC/ABC'

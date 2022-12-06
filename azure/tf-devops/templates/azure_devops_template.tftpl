@@ -1,0 +1,19 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - dev
+    - stage
+    - main
+    
+resources:
+  repositories:
+  - repository: templates
+    endpoint: ${github_endpoint}
+    name: abc/abc-devops
+    type: github
+
+extends:
+  template: ${template}@templates
+  parameters:
+    workingDirectory: ${project_dir}

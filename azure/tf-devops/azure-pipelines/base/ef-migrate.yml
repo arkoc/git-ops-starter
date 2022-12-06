@@ -1,0 +1,21 @@
+parameters:
+- name: efMigrations
+  type: object
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Update EF Tools
+  inputs:
+    command: custom
+    custom: tool
+    arguments: update --global dotnet-ef
+  condition: and(succeeded(), eq(${{ parameters.efMigrations.enabled }}, true))
+
+- ${{ each migration in parameters.efMigrations.inputs }}:
+  - task: DotNetCoreCLI@2
+    displayName: Run Migrations on ${{ migration.context }}
+    inputs:
+      command: custom
+      custom: ef
+      arguments: database update --context ${{ migration.context }} --project ${{ migration.project }} --connection "${{ migration.connection }}"
+    condition: and(succeeded(), eq(${{ parameters.efMigrations.enabled }}, true))

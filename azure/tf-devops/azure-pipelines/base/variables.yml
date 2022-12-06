@@ -1,0 +1,5 @@
+variables:   
+- ${{ if eq( variables['Build.SourceBranchName'], 'main') }}:
+  - group: prod
+- ${{ else }}:
+  - group: ${{variables['Build.SourceBranchName']}}

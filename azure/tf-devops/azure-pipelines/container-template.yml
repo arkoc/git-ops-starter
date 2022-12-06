@@ -1,0 +1,52 @@
+parameters:
+- name: workingDirectory
+  type: string
+- name: majorVersion
+  type: string
+  default: '1'
+- name: minorVersion
+  type: string
+  default: '0'    
+
+variables: 
+  - template: base/variables.yml 
+  - name: REPOSITORY_NAME
+    value: $(ImageName)
+
+steps:
+- script: |
+    commitHash=${sourceVersion:0:7}
+    ts=$(date +%s)
+    version=$branchName-$commitHash-$ts
+    echo $version
+    echo "##vso[task.setvariable variable=TagVersion]$version" ## Set variable for using in other tasks.
+  env: { 
+    sourceVersion: $(Build.SourceVersion),
+    branchName: $(Build.SourceBranchName)
+    }
+  displayName: Generate Tag Version
+  workingDirectory: #workingDirectory
+
+- task: NuGetAuthenticate@0
+  displayName: NuGet Authenticate
+
+- task: Docker@2
+  displayName: Build image $(REPOSITORY_NAME)
+  inputs:
+    command: build
+    repository: $(REPOSITORY_NAME)
+    containerRegistry: $(ACRServiceEndpoint)
+    dockerfile: ${{parameters.workingDirectory}}/Dockerfile
+    buildContext: .
+    arguments: --build-arg FEED_ACCESSTOKEN=$(VSS_NUGET_ACCESSTOKEN) --build-arg DOTNET_VERSION=$(Dotnet_Version)
+    tags: |
+      $(TagVersion)
+
+- task: Docker@2
+  displayName: Push image $(REPOSITORY_NAME)
+  inputs:
+    command: push
+    containerRegistry: $(ACRServiceEndpoint)
+    repository: $(REPOSITORY_NAME)
+    tags: |
+      $(TagVersion)

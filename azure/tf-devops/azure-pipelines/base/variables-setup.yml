@@ -1,0 +1,6 @@
+steps:
+- task: VariableSetTask@2
+  displayName: Setup App Name
+  inputs:
+    variableName: WebAppName
+    Value: $($(AppName))

@@ -1,0 +1,21 @@
+parameters:
+- name: testsDirectory
+  type: string
+  default: ''
+- name: dotnetVersion
+  type: string
+  default: 6.x
+
+steps:
+- template: variables-setup.yml
+
+- task: NuGetAuthenticate@0
+  displayName: NuGet Authenticate
+
+- task: DotNetCoreCLI@2
+  displayName: Run Tests
+  inputs:
+    command: test
+    projects: ${{parameters.testsDirectory}}/*.csproj
+    arguments: '--configuration $(buildConfiguration)'  
+  condition: and(succeeded(), not(eq('${{ parameters.testsDirectory }}', '')))
