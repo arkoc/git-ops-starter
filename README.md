@@ -124,6 +124,9 @@ For each specific terraform workspace there are separate variable files as well:
 - Private DNS Forwarder setup
 - DataDog AppServices Extensions Setup
 - Dashboard of components links generation
+- Azure functions host keys authentication
+- KeyVault access policies
+- CertManager/LetsEncrypte k8s setup 
 
 ## :skull: Underwater stones
 
