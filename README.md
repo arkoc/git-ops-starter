@@ -112,9 +112,9 @@ Following are global secrets neccessary for configuring terraform connections to
 | VERCEL_API_TOKEN | X | env | key description |
 
 For each specific terraform workspace there are separate variable files as well:
-- /azure/tf-infra/variables.tf
-- /azure/tf-k8s/variables.tf
-- /azure/tf-devops/variabales.tf
+- [/azure/tf-infra/variables.tf](/azure/tf-infra/variables.tf)
+- [/azure/tf-k8s/variables.tf](/azure/tf-k8s/variables.tf)
+- [/azure/tf-devops/variabales.tf](/azure/tf-devops/variabales.tf)
 
 ## :pushpin:Call outs
 
@@ -130,7 +130,9 @@ For each specific terraform workspace there are separate variable files as well:
 
 ## :skull: Underwater stones
 
-Information about Terraform cloud agents, azure build agents, link to doc how to build agent on premise, cloudflare module version and more
+- Terraform Cloud Agents
+- AzureDevops Build Agents
+- Cloudflare version problem
 
 ## :space_invader: What's next?
 
