@@ -84,10 +84,10 @@ Showcase how the new appservice and k8s deployment are added. The final result.
 
 The repository is organized by cloud provider. Right now ABC, Inc. is only running on Azure, but they have some plans on duplicating infra in AWS, Google Cloud or IBM Cloud (Is there a such a thing?)
 
-- /azure/tf-infra
-- /azure/tf-k8s
-- /azure/tf-devops
-- /azure/fluxcd
+- Main infrastructure [/azure/tf-infra](/azure/tf-infra)
+- AKS setup [/azure/tf-k8s](/azure/tf-k8s)
+- Azure DevOps Pipelines [/azure/tf-devops](/azure/tf-k8s)
+- FluxCD k8s gitops [/azure/fluxcd](/azure/fluxcd)
 
 ## :file_folder: Terraform Environment Variables
 
