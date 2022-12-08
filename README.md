@@ -117,6 +117,7 @@ For each specific terraform workspace there are separate variable files as well:
 - [/azure/tf-devops/variabales.tf](/azure/tf-devops/variabales.tf)
 
 ## :pushpin:Call outs
+In this repo, you can find a lot of usefull common setups. Here are some examples:
 
 - VPN Gateway Setup
 - Azure AppServices/AzureFunctions Private Link setup
