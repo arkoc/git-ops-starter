@@ -13,6 +13,8 @@ env: "" # dev, prod
 nameOverride: ""
 fullnameOverride: ""
 
+dataDogEnabled: false
+
 podAnnotations: {}
 
 podSecurityContext: {}

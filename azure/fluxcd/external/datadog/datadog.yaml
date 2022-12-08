@@ -30,4 +30,8 @@ spec:
               fieldPath: spec.nodeName
         hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
         tlsVerify: false # Required as of Agent 7.35. See Notes.
+    clusterAgent:
+      admissionController:
+        enabled: true
+        configMode: "socket"
         

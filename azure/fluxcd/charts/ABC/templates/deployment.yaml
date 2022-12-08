@@ -18,6 +18,9 @@ spec:
       {{- end }}
       labels:
         {{- include "abc.selectorLabels" . | nindent 8 }}
+        {{- if .Values.dataDogEnabled }}
+        admission.datadoghq.com/enabled: "true"
+        {{- end}}
     spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -38,7 +41,13 @@ spec:
           {{- if eq $containerType "worker" }}
           - name: DOTNET_ENVIRONMENT
             value: {{ include "abc.dotnetEnvironment" . }}
-          {{- end }}  
+          {{- end }}
+          {{- if .Values.dataDogEnabled }}
+          - name: DD_SERVICE
+            value: {{ include "abc.fullname" . }}
+          - name: DD_ENV
+            value: {{ include "abc.dotnetEnvironment" . }}
+          {{- end }}
           envFrom:
           {{- toYaml .Values.container.envFrom | nindent 10 }}
           {{- if eq $containerType "api" }}
