@@ -123,6 +123,7 @@ For each specific terraform workspace there are separate variable files as well:
 - Postgres/Redis Private Link Setup
 - Private DNS Forwarder setup
 - DataDog AppServices Extensions Setup
+- DataDog K8s Addmission Controller, sockets setup
 - Dashboard of components links generation
 - Azure functions host keys authentication
 - KeyVault access policies
