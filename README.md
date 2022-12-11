@@ -20,10 +20,10 @@ ABC, Inc. is a regular (or spectacular) SaaS startup. They develop their platfor
 - Redis (managed service by Azure)
 - Azure Service Bus
 - Typescript with Next.js and deployed in Vercel
-- Cloudflare
-- Lets-Encrypt
-- Azure DevOps Pipelines
-- Datadog
+- Cloudflare for DNS management
+- Lets-Encrypt for SSL management
+- Azure DevOps Pipelines for builds and deployments
+- Datadog for monitoring
 
 ## :newspaper: Story
 
